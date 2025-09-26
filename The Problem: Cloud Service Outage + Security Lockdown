@@ -1,0 +1,66 @@
+Your company runs a SaaS product hosted on AWS. Suddenly, customers worldwide report downtime. At first, it looks like a regional 
+AWS issue — but it snowballs into multiple, connected problems:
+
+Cloud Region Failure
+
+AWS us-east-1 suffers a partial outage affecting EC2 and S3.
+
+Your application’s web tier is unavailable in that region.
+
+Failover Misconfiguration
+
+Traffic was supposed to reroute automatically to eu-west-1.
+
+But a misconfigured Route 53 health check marks the wrong endpoints as healthy, leading to blackhole routing.
+
+Security Overreaction
+
+As the ops team tries to fix DNS, the WAF (Web Application Firewall) rules mistakenly block legitimate user traffic, thinking it’s a DDoS surge.
+
+This locks out paying customers during peak business hours.
+
+CI/CD Deployment Freeze
+
+A pipeline deployment triggered right before the outage is now stuck mid-rollout.
+
+Half the servers are running the old version, half the new version, leading to inconsistent API responses.
+
+📢 User Complaints
+
+Customers:
+
+“Your app is timing out on login.”
+
+“Some of my data is missing on dashboards.”
+
+“Why can my US team access it but my EU team cannot?”
+
+Internal Teams:
+
+Customer success teams are dealing with hundreds of angry tickets.
+
+Sales loses demos because the product is unavailable.
+
+Finance panics because subscription billing APIs are failing.
+
+⚡ Unexpected Obstacles While Fixing
+
+Failover Issues
+
+When engineers try to reroute traffic manually, cached DNS entries worldwide keep pointing to the dead region for hours.
+
+Users in some geographies remain broken despite the fix.
+
+Security Lockdown
+
+Reversing the emergency WAF rules temporarily allows malicious scanning traffic, forcing the security team into a balancing act between uptime and protection.
+
+Stuck Deployment
+
+Rolling back the CI/CD deployment triggers schema mismatches in the database.
+
+Some tables are updated for the new version, others are not, causing data corruption risks.
+
+Cloud Provider Dependency
+
+AWS support confirms the us-east-1 outage might last 6–8 hours, leaving leadership angry about why the company wasn’t truly multi-region-ready.
